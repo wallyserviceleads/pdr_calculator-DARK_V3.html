@@ -40,6 +40,13 @@
     .card{
       background:var(--card);border-radius:16px;padding:16px;border:1px solid var(--outline);box-shadow:0 10px 30px rgba(0,0,0,.35)
     }
+    .diagram-wrap{background:#0d0d0d;border:1px solid var(--outline);border-radius:12px;padding:8px}
+svg{width:100%;height:auto;display:block}
+.panel{fill:rgba(255,255,255,0.02);stroke:rgba(255,255,255,0.55);stroke-width:1.5}
+.panel:hover{stroke:var(--accent);stroke-width:2.2;fill:rgba(250,0,0,.14);cursor:crosshair}
+.panel.selected{stroke:var(--accent);stroke-width:2.2;fill:rgba(250,0,0,.18)}
+.body{fill:#141414;stroke:rgba(255,255,255,0.85);stroke-width:2.5}
+.label{font:12px system-ui,-apple-system,Segoe UI,Roboto,sans-serif;fill:rgba(255,255,255,.9);text-anchor:middle;pointer-events:none}
     label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:6px}
     input[type="number"],input[type="text"],input[type="email"],input[type="tel"],select{
       width:100%;background:#0d0d0d;border:1px solid var(--outline);border-radius:12px;padding:12px 12px;color:var(--text);
