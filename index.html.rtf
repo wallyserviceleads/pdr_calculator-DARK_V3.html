@@ -1,0 +1,466 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="en">\
+<head>\
+  <meta charset="utf-8" />\
+  <meta name="viewport" content="width=device-width, initial-scale=1" />\
+  <title>Columbia Dent Company \'95 PDR Estimate (Dark V3)</title>\
+  <style>\
+    :root\{\
+      --bg:#000000;\
+      --card:#0b0b0b;\
+      --muted:#9CA3AF;\
+      --text:#ffffff;\
+      --accent:#FA0000;\
+      --ring: rgba(250,0,0,.2);\
+      --pill:#111827;\
+      --outline: rgba(255,255,255,.08);\
+    \}\
+    *\{box-sizing:border-box\}\
+    html,body\{height:100%\}\
+    body\{\
+      margin:0;\
+      background:var(--bg);\
+      color:var(--text);\
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif;\
+      line-height:1.45;\
+    \}\
+    .wrap\{max-width:1000px;margin:24px auto;padding:0 16px\}\
+    header.brand\{display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap\}\
+    .logo\{\
+      width:56px;height:56px;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;\
+      background:#111;border:1px solid var(--outline)\
+    \}\
+    .logo img\{width:100%;height:100%;object-fit:cover\}\
+    h1\{margin:0;font-size:22px;font-weight:800;letter-spacing:-.2px\}\
+    .badge\{background:var(--accent);color:#fff;padding:6px 10px;border-radius:999px;font-weight:800;letter-spacing:.2px\}\
+    .row\{display:flex;gap:12px;flex-wrap:wrap;align-items:center\}\
+    .grid\{display:grid;gap:14px;grid-template-columns:repeat(12,1fr)\}\
+    .col-12\{grid-column:span 12\}.col-8\{grid-column:span 8\}.col-6\{grid-column:span 6\}.col-4\{grid-column:span 4\}.col-3\{grid-column:span 3\}\
+    @media(max-width:900px)\{.col-8,.col-6,.col-4,.col-3\{grid-column:span 12\}\}\
+    .card\{\
+      background:var(--card);border-radius:16px;padding:16px;border:1px solid var(--outline);box-shadow:0 10px 30px rgba(0,0,0,.35)\
+    \}\
+    label\{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:6px\}\
+    input[type="number"],input[type="text"],input[type="email"],input[type="tel"],select\{\
+      width:100%;background:#0d0d0d;border:1px solid var(--outline);border-radius:12px;padding:12px 12px;color:var(--text);\
+      outline:none;font-size:16px;transition:border-color .15s,box-shadow .15s\
+    \}\
+    input:focus,select:focus\{border-color:var(--accent);box-shadow:0 0 0 6px var(--ring)\}\
+    .chip\{display:inline-flex;align-items:center;gap:8px;background:#0d0d0d;padding:10px 12px;border-radius:999px;border:1px solid var(--outline);font-size:14px;cursor:pointer\}\
+    .help\{font-size:12px;color:var(--muted)\}\
+    button\{\
+      appearance:none;border:0;background:var(--accent);color:white;padding:12px 16px;border-radius:12px;font-weight:800;font-size:16px;\
+      cursor:pointer;box-shadow:0 8px 22px rgba(250,0,0,.25)\
+    \}\
+    button.secondary\{background:#111827;box-shadow:none;border:1px solid var(--outline)\}\
+    .result\{background:#0f1220;color:#e5e7eb;border-radius:16px;padding:16px;border:1px solid rgba(255,255,255,.06)\}\
+    .result strong\{color:#fff\}\
+    .pill\{display:inline-block;padding:2px 8px;background:#101318;border:1px solid var(--outline);border-radius:999px;font-size:12px;margin-right:6px\}\
+    .divider\{height:1px;background:var(--outline);margin:16px 0\}\
+    .diagram-wrap\{background:#0d0d0d;border:1px solid var(--outline);border-radius:12px;padding:8px\}\
+    svg\{width:100%;height:auto;display:block\}\
+    .panel\{fill:rgba(255,255,255,0.02);stroke:rgba(255,255,255,0.55);stroke-width:1.5\}\
+    .panel:hover\{stroke:var(--accent);stroke-width:2.2;fill:rgba(250,0,0,.14);cursor:crosshair\}\
+    .panel.selected\{stroke:var(--accent);stroke-width:2.2;fill:rgba(250,0,0,.18)\}\
+    .body\{fill:#141414;stroke:rgba(255,255,255,0.85);stroke-width:2.5\}\
+    .label\{font:12px system-ui,-apple-system,Segoe UI,Roboto,sans-serif;fill:rgba(255,255,255,.9);text-anchor:middle;pointer-events:none\}\
+  </style>\
+</head>\
+<body>\
+  <div class="wrap">\
+    <header class="brand">\
+      <div class="logo"><img id="brandLogo" alt="Logo"/></div>\
+      <div>\
+        <div class="row">\
+          <span class="badge">Columbia Dent Company</span>\
+          <span class="pill">PDR Estimate</span>\
+        </div>\
+        <h1>Instant Paintless Dent Repair Estimate</h1>\
+      </div>\
+    </header>\
+\
+    <div class="card">\
+      <div class="grid">\
+        <div class="col-8">\
+          <label>How big is the dent?</label>\
+          <div class="row" role="group" aria-label="Calculation mode">\
+            <label class="chip"><input type="radio" name="mode" value="length" checked/> Longest measurement</label>\
+            <label class="chip"><input type="radio" name="mode" value="area"/> Length \'d7 Width</label>\
+            <div class="help">Not sure? Measure across the widest part. If both sides are 10\uc0\u8243 +, we\'92ll switch to area pricing.</div>\
+          </div>\
+          <div class="row" style="margin-top:8px">\
+            <div style="min-width:160px;flex:1">\
+              <label for="lengthIn">Length (inches)</label>\
+              <input type="number" id="lengthIn" min="1" step="0.1" placeholder="e.g., 2.5" />\
+            </div>\
+            <div style="min-width:160px;flex:1" id="widthWrap" hidden>\
+              <label for="widthIn">Width (inches)</label>\
+              <input type="number" id="widthIn" min="1" step="0.1" placeholder="e.g., 3.0" />\
+            </div>\
+          </div>\
+        </div>\
+\
+        <div class="col-4">\
+          <label>Where is the dent?</label>\
+          <select id="vehicleType">\
+            <option value="sedan">Car / Sedan</option>\
+            <option value="suv">SUV</option>\
+            <option value="truck">Truck</option>\
+            <option value="hatch">Hatchback</option>\
+          </select>\
+          <div class="help">Click a panel to mark the spot. Click again to move it.</div>\
+        </div>\
+\
+        <div class="col-8">\
+          <label>Simplified difficulty (depth/shape)</label>\
+          <div class="row">\
+            <label class="chip"><input type="radio" name="depth" value="0" checked/> Shallow (easier)</label>\
+            <label class="chip"><input type="radio" name="depth" value="15"/> Medium (+15%)</label>\
+            <label class="chip"><input type="radio" name="depth" value="30"/> Deep (+30%)</label>\
+          </div>\
+          <div class="help">If the metal looks sharply creased or very pushed-in, pick Deep. Otherwise Shallow or Medium is fine.</div>\
+        </div>\
+\
+        <div class="col-4">\
+          <label>Common factors (optional)</label>\
+          <div class="row">\
+            <label class="chip"><input type="checkbox" value="25" class="factor" data-name="On a body line"/> Body line (+25%)</label>\
+            <label class="chip"><input type="checkbox" value="25" class="factor" data-name="Glue pull needed"/> Glue pull (+25%)</label>\
+            <label class="chip"><input type="checkbox" value="25" class="factor" data-name="Edge of panel"/> Edge of panel (+25%)</label>\
+          </div>\
+          <div class="help">If you're unsure, leave these off. We\'92ll confirm in person.</div>\
+        </div>\
+\
+        <div class="col-8">\
+          <label>Vehicle diagram (click a panel)</label>\
+          <div class="diagram-wrap">\
+            <svg id="vehicleSVG" viewBox="0 0 700 280" role="img" aria-label="Vehicle diagram">\
+              <!-- Body outline per type -->\
+              <g id="bodyGroup"></g>\
+              <!-- Panels -->\
+              <g id="panelGroup"></g>\
+              <!-- Labels -->\
+              <g id="labelGroup"></g>\
+              <!-- X mark -->\
+              <g id="markGroup"></g>\
+            </svg>\
+          </div>\
+        </div>\
+\
+        <div class="col-4">\
+          <label>Panel zoom</label>\
+          <div class="diagram-wrap">\
+            <div id="zoomBox" class="help">No panel selected yet.</div>\
+          </div>\
+          <div style="margin-top:8px">\
+            <label>Upload a photo (optional)</label>\
+            <input type="file" id="photo" accept="image/*" />\
+            <div class="help">A clear, angled photo helps us confirm the estimate.</div>\
+          </div>\
+        </div>\
+\
+        <div class="col-8">\
+          <label>R&I for access (shop-added if needed)</label>\
+          <div class="row">\
+            <label class="chip"><input type="checkbox" id="riNeeded" /> Might need minor access work (+ about $82)</label>\
+          </div>\
+          <div class="help">For small door jobs we usually don\'92t need it, but we\'92ll confirm.</div>\
+        </div>\
+\
+        <div class="col-4">\
+          <label>Contact (optional \'96 helps us follow up)</label>\
+          <input type="text" id="custName" placeholder="Name" style="margin-bottom:8px"/>\
+          <input type="tel" id="custPhone" placeholder="Phone" style="margin-bottom:8px"/>\
+          <input type="email" id="custEmail" placeholder="Email"/>\
+        </div>\
+\
+        <div class="col-12 row" style="margin-top:6px">\
+          <button id="calcBtn">Get My Estimate</button>\
+          <button class="secondary" id="saveBtn" title="Send to CRM if configured">Save to CRM</button>\
+          <button class="secondary" id="printBtn" title="Print or Save as PDF">Download PDF</button>\
+        </div>\
+\
+        <div class="col-12">\
+          <div class="result" id="resultBox" aria-live="polite" style="display:none;"></div>\
+        </div>\
+      </div>\
+    </div>\
+    <div class="help" style="margin-top:10px">Final pricing may vary after an in-person evaluation.</div>\
+  </div>\
+\
+<script>\
+// --- Brand controls via URL params ---\
+const qp = new URLSearchParams(location.search);\
+const brand = qp.get('brand') || 'Columbia Dent Company';\
+const logo = qp.get('logo') || '';\
+const accent = qp.get('color') || '#FA0000';\
+document.documentElement.style.setProperty('--accent', accent);\
+document.documentElement.style.setProperty('--ring', `rgba($\{hex2rgb(accent).join(',')\},.2)`);\
+document.title = brand + ' \'95 PDR Estimate (Dark V3)';\
+document.querySelector('.badge').textContent = brand;\
+\
+// Logo placeholder\
+const logoImg = document.getElementById('brandLogo');\
+if(logo)\{ logoImg.src = logo; logoImg.alt = brand + ' logo'; \}\
+else \{\
+  const c = document.createElement('canvas'); c.width=56; c.height=56;\
+  const ctx = c.getContext('2d');\
+  ctx.fillStyle = '#111'; ctx.fillRect(0,0,56,56);\
+  ctx.fillStyle = accent; ctx.font = 'bold 14px system-ui, -apple-system, Segoe UI, Roboto, sans-serif';\
+  ctx.textAlign='center'; ctx.textBaseline='middle';\
+  ctx.fillText('CDC', 28, 30);\
+  logoImg.src = c.toDataURL();\
+\}\
+\
+// Pricing data (1\'9650 inches)\
+const baseTable = \{\
+  1:173.59,2:249.18,3:324.77,4:400.36,5:475.95,\
+  6:551.54,7:627.13,8:702.72,9:778.31,10:853.90,\
+  11:929.49,12:1005.08,13:1080.67,14:1156.26,15:1231.85,\
+  16:1307.44,17:1383.03,18:1458.62,19:1534.21,20:1609.80,\
+  21:1685.39,22:1760.98,23:1836.57,24:1912.16,25:1987.75,\
+  26:2063.34,27:2138.93,28:2214.52,29:2290.11,30:2365.70,\
+  31:2441.29,32:2516.88,33:2592.47,34:2668.06,35:2743.65,\
+  36:2819.24,37:2894.83,38:2970.42,39:3046.01,40:3121.60,\
+  41:3197.19,42:3272.78,43:3348.37,44:3423.96,45:3499.55,\
+  46:3575.14,47:3650.73,48:3726.32,49:3801.91,50:3877.50\
+\};\
+\
+// Helpers\
+function getMode()\{ const r=document.querySelector('input[name="mode"]:checked'); return r?r.value:'length'; \}\
+function getBaseByLength(len)\{ if(!isFinite(len) || len<=0) return baseTable[1]; const key=Math.min(50,Math.max(1,Math.ceil(len))); return baseTable[key]; \}\
+function shouldUseArea(len,wid)\{ const area=len*wid; return (len>=10 && wid>=10) || area>100; \}\
+function baseByArea(len,wid)\{ return Math.max(0,len*wid)*6.5; \}\
+function money(n)\{ return n.toLocaleString(undefined,\{style:'currency',currency:'USD',maximumFractionDigits:2\}); \}\
+function round5(n)\{ return Math.round(n/5)*5; \}\
+function hex2rgb(hex)\{ const h=hex.replace('#',''); const b=parseInt(h,16); return [(b>>16)&255,(b>>8)&255,b&255]; \}\
+\
+// Calculator\
+function calc()\{\
+  const len = Number(document.getElementById('lengthIn').value||'0');\
+  const wid = Number(document.getElementById('widthIn').value||'0');\
+  const mode = getMode();\
+  const depthPct = Number((document.querySelector('input[name="depth"]:checked')||\{\}).value || '0');\
+  const factorChecks = Array.from(document.querySelectorAll('.factor:checked'));\
+  const ri = document.getElementById('riNeeded').checked ? 82 : 0;\
+\
+  let base=0, used='length';\
+  if(mode==='area' && shouldUseArea(len,wid))\{ base=baseByArea(len,wid); used='area'; \}\
+  else\{ const longest=Math.max(len,wid||0,1); base=getBaseByLength(longest); used='length'; \}\
+\
+  let pct = depthPct;\
+  const picked=[];\
+  if(depthPct>0) picked.push(depthPct===15?'Medium (+15%)':'Deep (+30%)');\
+  factorChecks.forEach(f=>\{ const p=Number(f.value); pct+=p; picked.push(f.dataset.name+` (+$\{p\}%)`); \});\
+\
+  const subtotal = base*(1+pct/100);\
+  const total = subtotal + ri;\
+\
+  const longestDim = Math.max(len,wid||0,1);\
+  const factorCount = picked.length;\
+  let highMarginBase = 0.42;\
+  if(longestDim<=3) highMarginBase = 0.45;\
+  else if(longestDim<=10) highMarginBase = 0.42;\
+  else if(longestDim<=15) highMarginBase = 0.50;\
+  else highMarginBase = 0.60;\
+  if(used==='area' || shouldUseArea(len,wid)) highMarginBase = Math.max(highMarginBase,0.60);\
+  const highMargin = Math.min(0.65, highMarginBase + 0.03*Math.max(0,factorCount));\
+  const low = round5(total*0.90);\
+  const high = round5(total*(1+highMargin));\
+\
+  return \{base, pct, subtotal, total, low, high, usedMode:used, ri, picked\};\
+\}\
+\
+document.getElementById('calcBtn').addEventListener('click', ()=>\{\
+  const \{base,pct,subtotal,total,low,high,usedMode,ri,picked\} = calc();\
+  const box = document.getElementById('resultBox');\
+  box.style.display='block';\
+  box.innerHTML = `\
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">\
+      <div><strong>Estimated Range:</strong> <span class="pill">$\{money(low)\}</span> to <span class="pill">$\{money(high)\}</span></div>\
+      <div class="pill">$\{usedMode==='area'?'Square-Inch':'Longest'\}</div>\
+    </div>\
+    <div class="divider"></div>\
+    <div><strong>Base:</strong> $\{money(base)\} \'95 <strong>Difficulty/Factors:</strong> +$\{pct\}% $\{ri?`\'95 <strong>R&I:</strong> +$\{money(ri)\}`:''\}</div>\
+    $\{picked.length?`<div style="margin-top:8px"><strong>Selected:</strong> $\{picked.map(d=>`<span class="pill">$\{d\}</span>`).join(' ')\}</div>`:''\}\
+  `;\
+\});\
+\
+document.getElementById('printBtn').addEventListener('click',()=>window.print());\
+\
+document.getElementById('saveBtn').addEventListener('click', async ()=>\{\
+  const webhook = qp.get('webhook') || '';\
+  if(!webhook)\{ alert('No CRM webhook configured. Add ?webhook=<URL-ENCODED> to the page URL.'); return; \}\
+  const \{low,high,total\} = calc();\
+  const payload = \{\
+    name: document.getElementById('custName').value || '',\
+    phone: document.getElementById('custPhone').value || '',\
+    email: document.getElementById('custEmail').value || '',\
+    estimate_low: low,\
+    estimate_high: high,\
+    estimate_mid: Math.round((low+high)/2),\
+    estimate_total_calc: total,\
+    brand,\
+    vehicle_type: document.getElementById('vehicleType').value,\
+    diagram_mark: currentMark,\
+    source: 'PDR Calculator SVG Dark V3',\
+    timestamp: new Date().toISOString()\
+  \};\
+  try\{\
+    const res = await fetch(webhook,\{method:'POST',headers:\{'Content-Type':'application/json'\},body:JSON.stringify(payload)\});\
+    if(!res.ok) throw new Error('non-ok');\
+    alert('Saved to CRM!');\
+  \}catch(e)\{\
+    console.error(e); alert('Could not send to CRM (CORS or URL issue).');\
+  \}\
+\});\
+\
+// ======== SVG DIAGRAM ========\
+const vehicleTypeSel = document.getElementById('vehicleType');\
+const svg = document.getElementById('vehicleSVG');\
+const bodyGroup = document.getElementById('bodyGroup');\
+const panelGroup = document.getElementById('panelGroup');\
+const labelGroup = document.getElementById('labelGroup');\
+const markGroup = document.getElementById('markGroup');\
+const zoomBox = document.getElementById('zoomBox');\
+\
+let currentType = vehicleTypeSel.value;\
+let currentMark = null;\
+\
+vehicleTypeSel.addEventListener('change', ()=>\{ currentType = vehicleTypeSel.value; currentMark=null; renderVehicle(); \});\
+\
+function renderVehicle()\{\
+  bodyGroup.innerHTML=''; panelGroup.innerHTML=''; labelGroup.innerHTML=''; markGroup.innerHTML='';\
+  const \{bodyPath, panels\} = getShape(currentType);\
+  const outline = document.createElementNS('http://www.w3.org/2000/svg','path');\
+  outline.setAttribute('d', bodyPath);\
+  outline.setAttribute('class','body');\
+  bodyGroup.appendChild(outline);\
+\
+  panels.forEach(p => \{\
+    const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');\
+    rect.setAttribute('x', p.x);\
+    rect.setAttribute('y', p.y);\
+    rect.setAttribute('width', p.w);\
+    rect.setAttribute('height', p.h);\
+    rect.setAttribute('rx', 6);\
+    rect.setAttribute('ry', 6);\
+    rect.setAttribute('class','panel');\
+    rect.dataset.id = p.id;\
+    rect.dataset.name = p.name;\
+    rect.addEventListener('click', ()=>\{\
+      currentMark = \{ x: p.x + p.w/2, y: p.y + p.h/2, panel: \{ id: p.id, name: p.name \} \};\
+      setSelectedPanel(p.id);\
+      drawMark();\
+      zoomBox.textContent = p.name + ' (approximate)';\
+    \});\
+    panelGroup.appendChild(rect);\
+\
+    const label = document.createElementNS('http://www.w3.org/2000/svg','text');\
+    label.setAttribute('x', p.x + p.w/2);\
+    label.setAttribute('y', p.y + p.h/2 + 4);\
+    label.setAttribute('class','label');\
+    label.textContent = p.name;\
+    labelGroup.appendChild(label);\
+  \});\
+\}\
+\
+function setSelectedPanel(id)\{\
+  [...panelGroup.children].forEach(n => \{\
+    if(n.classList)\{ n.classList.toggle('selected', n.dataset.id === id); \}\
+  \});\
+\}\
+\
+function drawMark()\{\
+  markGroup.innerHTML='';\
+  if(!currentMark) return;\
+  const g = document.createElementNS('http://www.w3.org/2000/svg','g');\
+  const line1 = document.createElementNS('http://www.w3.org/2000/svg','line');\
+  const line2 = document.createElementNS('http://www.w3.org/2000/svg','line');\
+  [line1, line2].forEach(l=>\{\
+    l.setAttribute('stroke','#ff4b4b');\
+    l.setAttribute('stroke-width','3');\
+    l.setAttribute('stroke-linecap','round');\
+  \});\
+  line1.setAttribute('x1', currentMark.x-10); line1.setAttribute('y1', currentMark.y-10);\
+  line1.setAttribute('x2', currentMark.x+10); line1.setAttribute('y2', currentMark.y+10);\
+  line2.setAttribute('x1', currentMark.x+10); line2.setAttribute('y1', currentMark.y-10);\
+  line2.setAttribute('x2', currentMark.x-10); line2.setAttribute('y2', currentMark.y+10);\
+  g.appendChild(line1); g.appendChild(line2);\
+  markGroup.appendChild(g);\
+\}\
+\
+// Return SVG body outline path + panel rectangles for each vehicle type (viewBox 0 0 700 280)\
+function getShape(type)\{\
+  if(type==='sedan')\{\
+    return \{\
+      bodyPath: 'M60,190 C110,120 210,90 350,80 C490,90 590,120 640,190 L640,210 C590,230 510,235 350,235 C190,235 110,230 60,210 Z',\
+      panels: [\
+        \{id:'hood', name:'Hood', x:80, y:150, w:120, h:50\},\
+        \{id:'roof', name:'Roof', x:260, y:120, w:180, h:50\},\
+        \{id:'trunk', name:'Trunk/Hatch', x:520, y:155, w:100, h:45\},\
+        \{id:'lf', name:'Left Fender', x:120, y:190, w:110, h:60\},\
+        \{id:'ld', name:'Left Door', x:270, y:185, w:80, h:65\},\
+        \{id:'rd', name:'Right Door', x:360, y:185, w:80, h:65\},\
+        \{id:'rf', name:'Right Fender', x:470, y:190, w:110, h:60\},\
+        \{id:'lr', name:'Left Quarter', x:210, y:165, w:50, h:45\},\
+        \{id:'rr', name:'Right Quarter', x:440, y:165, w:50, h:45\}\
+      ]\
+    \};\
+  \} else if(type==='suv')\{\
+    return \{\
+      bodyPath: 'M70,195 C120,130 200,95 300,90 L520,90 C590,95 620,130 640,180 L640,215 C600,235 520,240 350,240 C190,240 110,235 70,220 Z',\
+      panels: [\
+        \{id:'hood', name:'Hood', x:90, y:150, w:110, h:55\},\
+        \{id:'roof', name:'Roof', x:245, y:115, w:210, h:65\},\
+        \{id:'trunk', name:'Liftgate', x:520, y:150, w:90, h:65\},\
+        \{id:'lf', name:'Left Fender', x:130, y:200, w:100, h:60\},\
+        \{id:'ld', name:'Left Door', x:270, y:190, w:90, h:70\},\
+        \{id:'rd', name:'Right Door', x:370, y:190, w:90, h:70\},\
+        \{id:'rf', name:'Right Fender', x:480, y:200, w:100, h:60\},\
+        \{id:'lr', name:'Left Quarter', x:220, y:165, w:50, h:50\},\
+        \{id:'rr', name:'Right Quarter', x:450, y:165, w:50, h:50\}\
+      ]\
+    \};\
+  \} else if(type==='truck')\{\
+    return \{\
+      bodyPath: 'M80,200 C120,150 180,120 260,115 L380,115 C400,115 410,130 410,150 L410,175 L600,175 C620,190 630,205 640,215 L640,225 C560,245 470,248 350,248 C210,248 120,242 80,225 Z',\
+      panels: [\
+        \{id:'hood', name:'Hood', x:100, y:160, w:110, h:55\},\
+        \{id:'roof', name:'Cab Roof', x:240, y:130, w:110, h:60\},\
+        \{id:'bed', name:'Bedside', x:430, y:160, w:170, h:80\},\
+        \{id:'lf', name:'Left Fender', x:150, y:205, w:90, h:60\},\
+        \{id:'ld', name:'Door', x:265, y:195, w:120, h:70\},\
+        \{id:'rf', name:'Right Fender', x:400, y:205, w:90, h:60\}\
+      ]\
+    \};\
+  \} else \{ // hatchback\
+    return \{\
+      bodyPath: 'M65,190 C120,120 210,90 330,85 C460,90 560,120 620,185 L620,210 C570,230 480,235 350,235 C210,235 120,230 65,210 Z',\
+      panels: [\
+        \{id:'hood', name:'Hood', x:85, y:150, w:120, h:48\},\
+        \{id:'roof', name:'Roof', x:255, y:120, w:180, h:55\},\
+        \{id:'trunk', name:'Hatch', x:495, y:150, w:95, h:55\},\
+        \{id:'lf', name:'Left Fender', x:120, y:190, w:110, h:58\},\
+        \{id:'ld', name:'Left Door', x:270, y:185, w:85, h:65\},\
+        \{id:'rd', name:'Right Door', x:365, y:185, w:85, h:65\},\
+        \{id:'rf', name:'Right Fender', x:480, y:190, w:110, h:58\},\
+        \{id:'lr', name:'Left Quarter', x:215, y:165, w:50, h:45\},\
+        \{id:'rr', name:'Right Quarter', x:440, y:165, w:50, h:45\}\
+      ]\
+    \};\
+  \}\
+\}\
+\
+renderVehicle();\
+</script>\
+</body>\
+</html>\
+}
