@@ -330,141 +330,151 @@ document.getElementById('saveBtn').addEventListener('click', async ()=>{
   }
 });
 
-// --- Vehicle diagram ---
-const carCanvas = document.getElementById('carCanvas');
-const ctx = carCanvas.getContext('2d');
-const zoomCanvas = document.getElementById('zoomCanvas');
-const zctx = zoomCanvas.getContext('2d');
-const zoomLabel = document.getElementById('zoomLabel');
+// ======== SVG DIAGRAM ========
+const vehicleTypeSel = document.getElementById('vehicleType');
+const svg = document.getElementById('vehicleSVG');
+const bodyGroup = document.getElementById('bodyGroup');
+const panelGroup = document.getElementById('panelGroup');
+const labelGroup = document.getElementById('labelGroup');
+const markGroup = document.getElementById('markGroup');
+const zoomLabel = document.getElementById('zoomLabel'); // reuses your existing label
+
 let currentType = 'sedan';
-let currentMark = null; // {x,y,panel}
+let currentMark = null; // { x, y, panel: {id,name} }
 
 document.getElementById('vehicleType').addEventListener('change', e=>{
-  currentType = e.target.value; currentMark=null; drawVehicle();
-  zctx.clearRect(0,0,zoomCanvas.width,zoomCanvas.height); zoomLabel.textContent='No panel selected yet.';
+  currentType = e.target.value; currentMark=null; renderVehicle();
+  if (zoomLabel) zoomLabel.textContent='No panel selected yet.';
 });
 
-carCanvas.addEventListener('click', e=>{
-  const rect = carCanvas.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-  const panel = hitTestPanel(x,y,currentType);
-  if(panel){
-    currentMark = {x,y,panel};
-    drawVehicle();
-    drawZoom(panel, x, y);
-  }
-});
+function renderVehicle(){
+  bodyGroup.innerHTML=''; panelGroup.innerHTML=''; labelGroup.innerHTML=''; markGroup.innerHTML='';
+  const {bodyPath, panels} = getShape(currentType);
 
-function drawVehicle(){
-  ctx.clearRect(0,0,carCanvas.width,carCanvas.height);
-  ctx.save();
-  ctx.fillStyle = '#141414'; ctx.strokeStyle='rgba(255,255,255,.14)'; ctx.lineWidth=2;
+  // main outline
+  const outline = document.createElementNS('http://www.w3.org/2000/svg','path');
+  outline.setAttribute('d', bodyPath);
+  outline.setAttribute('class','body');
+  bodyGroup.appendChild(outline);
 
-  // Simple outlines/panels
-  const W = carCanvas.width, H = carCanvas.height;
-  const carW = W-60, carH = H-80, ox=30, oy=40;
+  // panels + labels
+  panels.forEach(p => {
+    const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
+    rect.setAttribute('x', p.x);
+    rect.setAttribute('y', p.y);
+    rect.setAttribute('width', p.w);
+    rect.setAttribute('height', p.h);
+    rect.setAttribute('rx', 6);
+    rect.setAttribute('ry', 6);
+    rect.setAttribute('class','panel');
+    rect.dataset.id = p.id;
+    rect.dataset.name = p.name;
 
-  // Body shape
-  roundedRect(ctx, ox, oy+20, carW, carH-40, 24); ctx.fill(); ctx.stroke();
+    rect.addEventListener('click', ()=>{
+      currentMark = { x: p.x + p.w/2, y: p.y + p.h/2, panel: { id: p.id, name: p.name } };
+      setSelectedPanel(p.id);
+      drawMark();
+      if (zoomLabel) zoomLabel.textContent = p.name + ' (approximate)';
+    });
 
-  // Cabin roof (simple arch)
-  ctx.beginPath();
-  ctx.moveTo(ox+carW*0.15, oy+carH*0.35);
-  ctx.quadraticCurveTo(ox+carW*0.5, oy, ox+carW*0.85, oy+carH*0.35);
-  ctx.lineTo(ox+carW*0.85, oy+carH*0.5);
-  ctx.lineTo(ox+carW*0.15, oy+carH*0.5);
-  ctx.closePath(); ctx.fill(); ctx.stroke();
+    panelGroup.appendChild(rect);
 
-  // Wheels
-  drawWheel(ox+carW*0.22, oy+carH-20);
-  drawWheel(ox+carW*0.78, oy+carH-20);
-
-  // Panel separators
-  ctx.strokeStyle='rgba(255,255,255,.25)'; ctx.lineWidth=1.5;
-  const panels = getPanels(currentType, ox, oy, carW, carH);
-  panels.forEach(p=>{
-    ctx.strokeRect(p.x, p.y, p.w, p.h);
-    if(currentMark && currentMark.panel && currentMark.panel.id===p.id){
-      ctx.fillStyle='rgba(250,0,0,.15)'; ctx.fillRect(p.x,p.y,p.w,p.h);
-    }
+    const label = document.createElementNS('http://www.w3.org/2000/svg','text');
+    label.setAttribute('x', p.x + p.w/2);
+    label.setAttribute('y', p.y + p.h/2 + 4);
+    label.setAttribute('class','label');
+    label.textContent = p.name;
+    labelGroup.appendChild(label);
   });
+}
 
-  // Draw mark X
-  if(currentMark){
-    ctx.save();
-    ctx.strokeStyle = '#ff4b4b'; ctx.lineWidth=3;
-    ctx.beginPath(); ctx.moveTo(currentMark.x-8,currentMark.y-8); ctx.lineTo(currentMark.x+8,currentMark.y+8);
-    ctx.moveTo(currentMark.x+8,currentMark.y-8); ctx.lineTo(currentMark.x-8,currentMark.y+8);
-    ctx.stroke();
-    ctx.restore();
+function setSelectedPanel(id){
+  [...panelGroup.children].forEach(n => {
+    if(n.classList){ n.classList.toggle('selected', n.dataset.id === id); }
+  });
+}
+
+function drawMark(){
+  markGroup.innerHTML='';
+  if(!currentMark) return;
+  const line1 = document.createElementNS('http://www.w3.org/2000/svg','line');
+  const line2 = document.createElementNS('http://www.w3.org/2000/svg','line');
+  [line1, line2].forEach(l=>{
+    l.setAttribute('stroke','#ff4b4b');
+    l.setAttribute('stroke-width','3');
+    l.setAttribute('stroke-linecap','round');
+  });
+  line1.setAttribute('x1', currentMark.x-10); line1.setAttribute('y1', currentMark.y-10);
+  line1.setAttribute('x2', currentMark.x+10); line1.setAttribute('y2', currentMark.y+10);
+  line2.setAttribute('x1', currentMark.x+10); line2.setAttribute('y1', currentMark.y-10);
+  line2.setAttribute('x2', currentMark.x-10); line2.setAttribute('y2', currentMark.y+10);
+  markGroup.appendChild(line1); markGroup.appendChild(line2);
+}
+
+// Clearer, more distinct shapes per type (viewBox 0 0 700 280)
+function getShape(type){
+  if(type==='sedan'){
+    return {
+      bodyPath: 'M60,190 C110,120 210,90 350,80 C490,90 590,120 640,190 L640,210 C590,230 510,235 350,235 C190,235 110,230 60,210 Z',
+      panels: [
+        {id:'hood', name:'Hood', x:80, y:150, w:120, h:50},
+        {id:'roof', name:'Roof', x:260, y:120, w:180, h:50},
+        {id:'trunk', name:'Trunk/Hatch', x:520, y:155, w:100, h:45},
+        {id:'lf', name:'Left Fender', x:120, y:190, w:110, h:60},
+        {id:'ld', name:'Left Door', x:270, y:185, w:80, h:65},
+        {id:'rd', name:'Right Door', x:360, y:185, w:80, h:65},
+        {id:'rf', name:'Right Fender', x:470, y:190, w:110, h:60},
+        {id:'lr', name:'Left Quarter', x:210, y:165, w:50, h:45},
+        {id:'rr', name:'Right Quarter', x:440, y:165, w:50, h:45}
+      ]
+    };
+  } else if(type==='suv'){
+    return {
+      bodyPath: 'M70,195 C120,130 200,95 300,90 L520,90 C590,95 620,130 640,180 L640,215 C600,235 520,240 350,240 C190,240 110,235 70,220 Z',
+      panels: [
+        {id:'hood', name:'Hood', x:90, y:150, w:110, h:55},
+        {id:'roof', name:'Roof', x:245, y:115, w:210, h:65},
+        {id:'trunk', name:'Liftgate', x:520, y:150, w:90, h:65},
+        {id:'lf', name:'Left Fender', x:130, y:200, w:100, h:60},
+        {id:'ld', name:'Left Door', x:270, y:190, w:90, h:70},
+        {id:'rd', name:'Right Door', x:370, y:190, w:90, h:70},
+        {id:'rf', name:'Right Fender', x:480, y:200, w:100, h:60},
+        {id:'lr', name:'Left Quarter', x:220, y:165, w:50, h:50},
+        {id:'rr', name:'Right Quarter', x:450, y:165, w:50, h:50}
+      ]
+    };
+  } else if(type==='truck'){
+    return {
+      bodyPath: 'M80,200 C120,150 180,120 260,115 L380,115 C400,115 410,130 410,150 L410,175 L600,175 C620,190 630,205 640,215 L640,225 C560,245 470,248 350,248 C210,248 120,242 80,225 Z',
+      panels: [
+        {id:'hood', name:'Hood', x:100, y:160, w:110, h:55},
+        {id:'roof', name:'Cab Roof', x:240, y:130, w:110, h:60},
+        {id:'bed', name:'Bedside', x:430, y:160, w:170, h:80},
+        {id:'lf', name:'Left Fender', x:150, y:205, w:90, h:60},
+        {id:'ld', name:'Door', x:265, y:195, w:120, h:70},
+        {id:'rf', name:'Right Fender', x:400, y:205, w:90, h:60}
+      ]
+    };
+  } else { // hatchback
+    return {
+      bodyPath: 'M65,190 C120,120 210,90 330,85 C460,90 560,120 620,185 L620,210 C570,230 480,235 350,235 C210,235 120,230 65,210 Z',
+      panels: [
+        {id:'hood', name:'Hood', x:85, y:150, w:120, h:48},
+        {id:'roof', name:'Roof', x:255, y:120, w:180, h:55},
+        {id:'trunk', name:'Hatch', x:495, y:150, w:95, h:55},
+        {id:'lf', name:'Left Fender', x:120, y:190, w:110, h:58},
+        {id:'ld', name:'Left Door', x:270, y:185, w:85, h:65},
+        {id:'rd', name:'Right Door', x:365, y:185, w:85, h:65},
+        {id:'rf', name:'Right Fender', x:480, y:190, w:110, h:58},
+        {id:'lr', name:'Left Quarter', x:215, y:165, w:50, h:45},
+        {id:'rr', name:'Right Quarter', x:440, y:165, w:50, h:45}
+      ]
+    };
   }
-
-  ctx.restore();
 }
 
-function drawWheel(x,y){
-  ctx.save();
-  ctx.fillStyle='#0a0a0a'; ctx.strokeStyle='rgba(255,255,255,.2)';
-  ctx.beginPath(); ctx.arc(x,y,22,0,Math.PI*2); ctx.fill(); ctx.stroke();
-  ctx.restore();
-}
-
-function roundedRect(ctx,x,y,w,h,r){
-  ctx.beginPath();
-  ctx.moveTo(x+r,y);
-  ctx.arcTo(x+w,y,x+w,y+h,r);
-  ctx.arcTo(x+w,y+h,x,y+h,r);
-  ctx.arcTo(x,y+h,x,y,r);
-  ctx.arcTo(x,y,x+w,y,r);
-  ctx.closePath();
-}
-
-function getPanels(type, ox, oy, w, h){
-  const panels=[];
-  // hood
-  panels.push({id:'hood', x:ox+w*0.05, y:oy+ h*0.28, w:w*0.22, h:h*0.18, name:'Hood'});
-  // roof
-  panels.push({id:'roof', x:ox+w*0.30, y:oy+ h*0.18, w:w*0.40, h:h*0.18, name:'Roof'});
-  // trunk/bed
-  if(type==='truck'){
-    panels.push({id:'bed', x:ox+w*0.72, y:oy+ h*0.28, w:w*0.20, h:h*0.35, name:'Bedside'});
-  }else{
-    panels.push({id:'trunk', x:ox+w*0.72, y:oy+ h*0.30, w:w*0.20, h:h*0.18, name:'Trunk/Hatch'});
-  }
-  // sides simplified
-  panels.push({id:'lf', x:ox+w*0.14, y:oy+ h*0.52, w:w*0.18, h:h*0.28, name:'Left Fender'});
-  panels.push({id:'rf', x:ox+w*0.68, y:oy+ h*0.52, w:w*0.18, h:h*0.28, name:'Right Fender'});
-  panels.push({id:'ld', x:ox+w*0.34, y:oy+ h*0.52, w:w*0.14, h:h*0.28, name:'Left Door'});
-  panels.push({id:'rd', x:ox+w*0.52, y:oy+ h*0.52, w:w*0.14, h:h*0.28, name:'Right Door'});
-  panels.push({id:'lr', x:ox+w*0.28, y:oy+ h*0.35, w:w*0.10, h:h*0.16, name:'Left Quarter'});
-  panels.push({id:'rr', x:ox+w*0.62, y:oy+ h*0.35, w:w*0.10, h:h*0.16, name:'Right Quarter'});
-  return panels;
-}
-
-function hitTestPanel(x,y,type){
-  const W = carCanvas.width, H = carCanvas.height;
-  const ox=30, oy=40, w=W-60, h=H-80;
-  const panels = getPanels(type, ox, oy, w, h);
-  for(const p of panels){
-    if(x>=p.x && x<=p.x+p.w && y>=p.y && y<=p.y+p.h) return p;
-  }
-  return null;
-}
-
-function drawZoom(panel, x, y){
-  zctx.clearRect(0,0,zoomCanvas.width,zoomCanvas.height);
-  // draw panel box
-  zctx.fillStyle='#0b0b0b'; zctx.strokeStyle='rgba(255,255,255,.25)'; zctx.lineWidth=2;
-  zctx.fillRect(10,10,zoomCanvas.width-20,zoomCanvas.height-20);
-  zctx.strokeRect(10,10,zoomCanvas.width-20,zoomCanvas.height-20);
-  // marker centered
-  const cx = zoomCanvas.width/2, cy = zoomCanvas.height/2;
-  zctx.strokeStyle = '#ff4b4b'; zctx.lineWidth=3;
-  zctx.beginPath(); zctx.moveTo(cx-10,cy-10); zctx.lineTo(cx+10,cy+10);
-  zctx.moveTo(cx+10,cy-10); zctx.lineTo(cx-10,cy+10); zctx.stroke();
-  zoomLabel.textContent = panel.name + ' (approximate)';
-}
+// first render
+renderVehicle();
 
 // Initial draw
 drawVehicle();
