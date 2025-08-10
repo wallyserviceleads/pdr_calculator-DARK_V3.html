@@ -127,9 +127,17 @@
         </div>
 
         <div class="col-8">
-          <label>Vehicle diagram (click to mark)</label>
-          <canvas id="carCanvas" width="700" height="280" aria-label="Vehicle diagram"></canvas>
-          <div class="help">Click once to drop an “X”. Click again to move it.</div>
+          <label>Vehicle diagram (click a panel)</label>
+<div class="diagram-wrap">
+  <svg id="vehicleSVG" viewBox="0 0 700 280" role="img" aria-label="Vehicle diagram">
+    <g id="bodyGroup"></g>
+    <g id="panelGroup"></g>
+    <g id="labelGroup"></g>
+    <g id="markGroup"></g>
+  </svg>
+</div>
+<div class="help">Click a panel to drop an “X”. Click another panel to move it.</div>
+
         </div>
 
         <div class="col-4">
